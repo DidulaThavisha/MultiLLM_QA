@@ -21,7 +21,22 @@ You can start editing the page by modifying `pages/index.tsx`. The page auto-upd
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This project uses [next/font](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+## Environment Variables
+
+Before running the project, create a `.env` file in the root directory and add the following environment variables:
+
+```
+ASTRA_DB_NAMESPACE=""
+ASTRA_DB_COLLECTION=""
+ASTRA_DB_API_ENDPOINT=""
+ASTRA_DB_APPLICATION_TOKEN=""
+GROQ_API_KEY=""
+HUGGINGFACE_API_KEY=""
+```
+
+Replace the empty values with your actual API keys and database credentials.
 
 ## Learn More
 
