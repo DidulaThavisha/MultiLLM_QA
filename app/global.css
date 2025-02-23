@@ -3,77 +3,78 @@
 }
 
 
-
 body {
-    height: 100%;
-    width: 100%;
-    margin: 0;
+    margin: 2%;
     padding: 0;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    height: 100vh;  
-
-    background-image: url("assets/f1.jpg");
-    background-size: contain;
-
+    width: 100%;
+    /* background-image: url("assets/f1.jpg");
+    background-size: contain; */
+    background: linear-gradient(-45deg, #411b8d, #1a73e8, #ff6b6b, #ffd166);
+    /* backdrop-filter: blur(20px); */
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
 }
 
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Allow main to expand dynamically */
 main {
     width: 80vw;
-    height: 80vh;
-    background: linear-gradient(to bottom, #f8f8f8, #cfcfcf);
+    max-width: 80vw; /* Prevents excessive width */
     border-radius: 15px;
     display: flex;
-    align-items: center;
     flex-direction: column;
-    justify-content: space-between;
+    align-items: center;
     padding: 20px;
     text-align: center;
+    margin-bottom: 5%; /* Give space for the fixed form */
     color: #383838;
+    background: rgba(255, 255, 255, 0.15); 
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2); 
 }
 
-section {
-    height: 100%;
-    width: 100%;
-    }
-
-/* section.populated {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    overflow-y: scroll;
-} */
+/* Let section grow naturally */
 section.populated {
-    height: 100%;
-    max-height: calc(80vh - 90px);
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    overflow-y: auto;
-}
-.starter-text {
-    padding: 0 80px;
+    overflow-y: visible; /* No scrolling inside main */
+    padding-bottom: 20px;
 }
 
+/* Make form stick to the bottom of the viewport */
 form {
-    height: 15%;
-    width: 100%;
+    height: 8%;
+    width: 80%;
+    max-width: 80vw;
     display: flex;
-    border-top: #828282 solid 2px;
-    padding-top: 20px;
-    border-radius: 0 0 10px 10px;
-    overflow: hidden;
+    /* border-top: #828282 solid 2px; */
+    background: #f8f8f8;
+    position: fixed;
+    bottom: 2%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 15px;
 }
 
-
-input.question-box{
+/* Ensure input field and submit button stay in place */
+input.question-box {
     width: 85%;
     color: #383838;
     font-size: 15px;
     padding: 10px;
     border: none;
+    border-radius: 15px 0px 0px 15px;
 }
 
 input[type=submit] {
@@ -83,13 +84,14 @@ input[type=submit] {
     border: none;
     background-color: #411b8d;
     color: #fff;
+    border-radius: 0px 15px 15px 0px;
 }
-
 
 input:focus {
     outline: none;
 }
 
+/* Keep bubbles within section */
 .bubble {
     margin: 8px;
     padding: 8px;
@@ -99,6 +101,7 @@ input:focus {
     box-shadow: #959da533 0 8px 24px;
     width: 80%;
     text-align: left;
+    word-wrap: break-word;
 }
 
 .bubble.user {
@@ -108,8 +111,27 @@ input:focus {
 }
 
 .bubble.assistant {
+    width: 20vw;
+    max-width: 20vw;
     background-color: #dce7ff;
-    border-radius: 20px 20px 20px 0px;
+    border-radius: 20px 20px 20px 20px;
+}
+
+/* Horizontal scrolling for models */
+.bubble-container {
+    display: flex;
+    flex-direction: row;
+    gap: 0.1rem;
+    flex-wrap: nowrap;
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 10px;
+}
+
+.response-group {
+    flex: 0 0 auto;
+    min-width: 250px;
+    overflow: hidden;
 }
 
 .prompt-suggestion-row {
@@ -117,7 +139,7 @@ input:focus {
 }
 
 .prompt-suggestion-button {
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.45);
     color: #383838;
     border: none;
     padding: 8px;
@@ -126,6 +148,12 @@ input:focus {
     font-size: 15px;
     cursor: pointer;
     box-shadow: #959da533 0 8px 24px;
+}
+
+.model-logo {
+    width: auto;  
+    height: 50px;  /* Adjust size as needed */
+    margin-top: 10px;  /* Space between logo and message */
 }
 
 .loader {
@@ -145,5 +173,3 @@ input:focus {
     50% {background-size: calc(100%/3) 100%, calc(100%/3) 0%, calc(100%/3) 100%;}
     66% {background-size: calc(100%/3) 100%, calc(100%/3) 100%, calc(100%/3) 0%;}
 }
-     
-
